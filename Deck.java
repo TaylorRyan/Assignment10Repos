@@ -16,10 +16,12 @@ public class Deck
 	final static private String ACE="Ace";
 	final static private int NUM_RANKS=13;
 	final static private int NUM_SUITS=4;
+	final static private int NUM_CARDS=NUM_RANKS*NUM_SUITS;
 	private String rank;
 	private String suit;
 	
-	Card[][] cards=new Card[13][4];
+	
+	Card[][] cards=new Card[NUM_RANKS][NUM_SUITS];
 
 	public Deck()
 	{	
@@ -32,6 +34,10 @@ public class Deck
 				cards[r][s]=new Card(rank,suit);
 			}
 		}
+	}
+	public int getNumCards()
+	{
+		return NUM_CARDS;
 	}
 	public void shuffle()
 	{
@@ -49,10 +55,14 @@ public class Deck
 				placeHolder.equals(cards[r][s]);
 				cards[r][s].equals(cards[rRank][rSuit]);
 				cards[rRank][rSuit].equals(placeHolder);
-				System.out.println(cards[r][s]);
+				
 			}
 		}
 		
+	}
+	public Card deal(int x,int y)
+	{
+		return cards[x][y];
 	}
 	public static String setSuitString(int y)
 	{

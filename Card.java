@@ -46,7 +46,6 @@ public class Card
 		{
 			picAddress=rankString+suitLetter+".jpg";
 		}
-		System.out.println(picAddress);
 	}
 	public String getSuit()
 	{
@@ -101,7 +100,11 @@ public class Card
 	}
 	public int getValue()
 	{
-		return value;
+		if(value!=1)
+		{
+			return value;
+		}
+		return 14; 		//this is to prevent the ace from being concidered a low card
 	}
 	public void equals(Card c)
 	{
