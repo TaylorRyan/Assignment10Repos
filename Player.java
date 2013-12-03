@@ -6,23 +6,12 @@ import java.util.ArrayList;
 public class Player 
 {
 	private ArrayList<Card> pile=new ArrayList<Card>();
-	//private boolean auto=false;  //This is a boolean used to automate the player actions if
-								// a computer player is selected
 	
 	//Constructors
 	public Player()
 	{
 		
 	}
-	
-	/*public Player(String s)
-	{
-		if (s.equals("CPU"))
-		{
-			auto=true;
-		}
-		auto=false;
-	}*/
 	
 	//access & mutator methods
 	public int getCardCount()
@@ -37,10 +26,10 @@ public class Player
 	}
 	public Card getTopCard()
 	{
+		
 		Card c=pile.get(0);
 		pile.remove(0);
+		
 		return c;
 	}
-	
-	
 }

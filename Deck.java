@@ -20,7 +20,6 @@ public class Deck
 	private String rank;
 	private String suit;
 	
-	
 	Card[][] cards=new Card[NUM_RANKS][NUM_SUITS];
 
 	public Deck()

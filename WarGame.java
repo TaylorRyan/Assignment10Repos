@@ -19,14 +19,14 @@ public class WarGame
 	public static void main(String[] args)
 	{
 		boolean noWinner=true;  //This boolean will stay true while both players have cards
+		
 		Player p1=new Player();
 		Player p2=new Player();
 		//Player comp=new Player("CPU");
 		Turn turn;
-		//War war;
 		int winner;
-		
-		
+		Card c1=new Card();
+		Card c2=new Card();
 		//initialize deck
 		Deck deck=new Deck();
 		//shuffle deck
@@ -34,42 +34,60 @@ public class WarGame
 		//deal deck 
 		dealDeck(deck,p1,p2);
 		//turn phase
+		noWinner=checkWinner(p1.getCardCount(),p2.getCardCount());
 		while(noWinner)
 		{
+			System.out.println(p1.getCardCount()+" "+p2.getCardCount());
 			//put card forward
-			turn=new Turn(p1.getTopCard(),p2.getTopCard());
+			c1=p1.getTopCard();
+			c2=p2.getTopCard();
+			System.out.println(c1);
+			System.out.println(c2);
+			turn=new Turn(c1,c2);
 			//flip card
 			//show winner
-			winner=turn.compareCards();    	//This method will return either 0, 1 or 2, to indicate 
-											//the winning player
-											//If 2 is returned, it is either the computer or the seconds player
-											//If 0 is returned, it is a war
-			if(winner==1)
-			{
-				turn.giveWinnerCards(p1);
-				
+			while(turn.inProgress())
+			{		
+				winner=turn.compareCards();
+				/*This method will return either 0, 1 or 2, to indicate 
+				 *the winning player
+				 *If 2 is returned, it is either the computer or the seconds player
+				 *If 1 is retruned, it is player one
+				 *If 0 is returned, it is a war
+				 */
+				if(winner==1)
+				{
+					turn.giveWinnerCards(p1);
+				}
+				if(winner==2)
+				{
+					turn.giveWinnerCards(p2);
+				}
+				if(winner==0)
+				{
+					turn.war(p1,p2);
+				}
+				noWinner=checkWinner(p1.getCardCount(),p2.getCardCount());
 			}
-			if(winner==2)
-			{
-				turn.giveWinnerCards(p2);
-			}
-			if(winner==0)
-			{
-				//war=new War(turn,p1,p2);
-			}
+			
+			
+			
 			
 			//reset play field
 			
 			
 			noWinner=checkWinner(p1.getCardCount(),p2.getCardCount());
+		
 		}
+		
+		System.out.println(p1.getCardCount()+" "+p2.getCardCount());
 	}
+	
 	public static boolean checkWinner(int p1,int p2)
 	{
-		
+
 		if(p1==0||p2==0)
-		{
-			
+		{	
 			return false;   //false returns the boolean that there is no longer "no winner"
 		}
 		return true;  //true returns that there is still cards in both players piles
