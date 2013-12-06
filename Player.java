@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 //Taylor Ryan
 //CS110
@@ -20,6 +21,10 @@ public class Player
 	}
 
 	//function methods
+	public void shufflePile()
+	{
+		Collections.shuffle(pile);
+	}
 	public void recieveCard(Card c)
 	{
 		pile.add(c);
@@ -29,7 +34,6 @@ public class Player
 		
 		Card c=pile.get(0);
 		pile.remove(0);
-		
 		return c;
 	}
 }

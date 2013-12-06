@@ -12,6 +12,10 @@ public class Turn
 	private boolean turnInProgress;   
 	final private boolean TURN_OVER=false;
 	
+	public Turn()
+	{
+		
+	}
 	public Turn(Card p1, Card p2)
 	{
 		p1Card=p1;
@@ -22,6 +26,8 @@ public class Turn
 	}
 	public int compareCards()
 	{
+		
+		
 		if(p1Card.getValue()>p2Card.getValue())
 		{
 			return 1;
@@ -76,7 +82,6 @@ public class Turn
 	public boolean inProgress()
 	{
 		return turnInProgress;
-		
 	}
 
 }

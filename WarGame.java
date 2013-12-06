@@ -22,11 +22,11 @@ public class WarGame
 		
 		Player p1=new Player();
 		Player p2=new Player();
-		//Player comp=new Player("CPU");
 		Turn turn;
 		int winner;
 		Card c1=new Card();
 		Card c2=new Card();
+		
 		//initialize deck
 		Deck deck=new Deck();
 		//shuffle deck
@@ -37,14 +37,12 @@ public class WarGame
 		noWinner=checkWinner(p1.getCardCount(),p2.getCardCount());
 		while(noWinner)
 		{
-			System.out.println(p1.getCardCount()+" "+p2.getCardCount());
 			//put card forward
 			c1=p1.getTopCard();
 			c2=p2.getTopCard();
-			System.out.println(c1);
-			System.out.println(c2);
 			turn=new Turn(c1,c2);
 			//flip card
+			
 			//show winner
 			while(turn.inProgress())
 			{		
@@ -67,20 +65,15 @@ public class WarGame
 				{
 					turn.war(p1,p2);
 				}
-				noWinner=checkWinner(p1.getCardCount(),p2.getCardCount());
+				//noWinner=checkWinner(p1.getCardCount(),p2.getCardCount());
 			}
-			
-			
-			
-			
 			//reset play field
 			
-			
+			p1.shufflePile();
+			p2.shufflePile();
 			noWinner=checkWinner(p1.getCardCount(),p2.getCardCount());
-		
 		}
 		
-		System.out.println(p1.getCardCount()+" "+p2.getCardCount());
 	}
 	
 	public static boolean checkWinner(int p1,int p2)
