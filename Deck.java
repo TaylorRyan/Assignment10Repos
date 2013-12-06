@@ -47,14 +47,11 @@ public class Deck
 			{
 				rRank=rand.nextInt(r+1);
 				rSuit=rand.nextInt(s+1);
-				
-				
 				placeHolder.equals(cards[r][s]);
 				cards[r][s].equals(cards[rRank][rSuit]);
 				cards[rRank][rSuit].equals(placeHolder);
 			}
 		}
-		
 	}
 	public Card deal(int x,int y)
 	{
@@ -81,6 +78,5 @@ public class Deck
 	{
 		x+=1;
 		return x;
-	}
-	
+	}	
 }

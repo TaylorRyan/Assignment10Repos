@@ -2,20 +2,12 @@
 //Trying to teach myself how to make a gui by reading chapter 12
 
 import javax.swing.*;
-
-import java.awt.*;
 import java.awt.event.*;
 //import java.text.DecimalFormat;
 
 public class WarGameGUI extends JFrame
 {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	
-	
-	
 	private final String RefStringToJPG="/Users/tr/Desktop/Java programs/Assignment10/res/";
 	private JPanel panel;
 	private JLabel display;
@@ -36,11 +28,10 @@ public class WarGameGUI extends JFrame
 	private Card p1Card;
 	private Turn turn;
 	private Card p2Card;
-
+	
 	private boolean going=false;
 
-	private ImageIcon imageCard1;
-	private ImageIcon imageCard2;
+	
 	private ImageIcon imageBack=new ImageIcon(RefStringToJPG+"back.jpg");
 	private boolean cardForward=false;
 	private boolean faceUp=false;
@@ -59,17 +50,11 @@ public class WarGameGUI extends JFrame
 				deck=new Deck();
 				p1=new Player();
 				p2=new Player();
-				
 				deck.shuffle();
 				dealDeck(deck,p1,p2);
-				
 				p1Card=p1.getTopCard();
 				p2Card=p2.getTopCard();
-				
 				turn=new Turn(p1Card,p2Card);
-				imageCard1=p1Card.getImage();
-				imageCard2=p2Card.getImage();
-				
 				start.setVisible(false);
 				fight.setVisible(true);
 			}
@@ -77,14 +62,15 @@ public class WarGameGUI extends JFrame
 			{
 				
 				giveCardsToWinner(turn,p1,p2);
+				System.out.println(p1.getCardCount()+p2.getCardCount());
+				warCard1.setVisible(false);
+				warCard2.setVisible(false);
+				warCardFaceDown1.setVisible(false);
+				warCardFaceDown2.setVisible(false);
 				if(p1.getCardCount()==0||p2.getCardCount()==0)
 				{
-
-				
-			
 					labelPlayerOne.setText("Player 1 has "+p1.getCardCount()+" cards");
 					labelPlayerTwo.setText("Player 2 has "+p2.getCardCount()+" cards");
-					
 					card1.setIcon(null);
 					card2.setIcon(null);
 					cardForward=false;
@@ -98,6 +84,7 @@ public class WarGameGUI extends JFrame
 						display=new JLabel("The winner is player 1");
 					}
 					panel.add(display);
+					
 					reset.setVisible(false);
 					fight.setVisible(false);
 					start.setVisible(false);
@@ -106,27 +93,18 @@ public class WarGameGUI extends JFrame
 				}
 				else
 				{
-					warCard1.setVisible(false);
-					warCard2.setVisible(false);
-					warCardFaceDown1.setVisible(false);
-					warCardFaceDown2.setVisible(false);
+					
 					card1.setVisible(true);
 					card2.setVisible(true);
-					
-					
-					
 					card1.setIcon(null);
 					card2.setIcon(null);
 					cardForward=false;
 					faceUp=false;
-			
 					labelPlayerOne.setText("Player 1 has "+p1.getCardCount()+" cards");
 					labelPlayerTwo.setText("Player 2 has "+p2.getCardCount()+" cards");
 					p1Card=p1.getTopCard();
 					p2Card=p2.getTopCard();
 					turn=new Turn(p1Card,p2Card);
-					imageCard1=p1Card.getImage();
-					imageCard2=p2Card.getImage();
 					reset.setVisible(false);
 					fight.setVisible(true);
 				}
@@ -139,10 +117,8 @@ public class WarGameGUI extends JFrame
 				warCardFaceDown2.setVisible(false);
 				card1.setVisible(true);
 				card2.setVisible(true);
-				
 				if(cardForward&&!faceUp)
 				{
-					
 					card1.setIcon(turn.getP1Card().getImage());
 					card2.setIcon(turn.getP2Card().getImage());
 					faceUp=true;
@@ -155,7 +131,6 @@ public class WarGameGUI extends JFrame
 				}
 				if(cardForward&&faceUp)
 				{
-					
 					if(turn.compareCards()==0)
 					{
 						war.setVisible(true);
@@ -170,10 +145,10 @@ public class WarGameGUI extends JFrame
 			}
 			if(e.getSource()==war)
 			{
+				System.out.println("war");
 				turn.war(p1,p2);
 				p1Card.equals(turn.getP1Card());
 				p2Card.equals(turn.getP2Card());
-				
 				card1.setVisible(false);
 				card2.setVisible(false);
 				warCard1.setVisible(true);
@@ -182,16 +157,13 @@ public class WarGameGUI extends JFrame
 				warCardFaceDown2.setVisible(true);
 				warCard1.setIcon(turn.getP1Card().getImage());
 				warCard2.setIcon(turn.getP2Card().getImage());
-				
-				if(turn.compareCards()!=0);
+				if(turn.compareCards()!=0)
 				{
 					war.setVisible(false);
 					reset.setVisible(true);	
 				}
 				
-				
 			}
-
 		}
 	}
 	public WarGameGUI()
@@ -199,7 +171,6 @@ public class WarGameGUI extends JFrame
 		
 		setTitle("War");
 		going=true;
-		
 		this.setBounds(100, 100, 800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		buildPanel();
@@ -211,7 +182,6 @@ public class WarGameGUI extends JFrame
 			{
 				start.doClick();
 			}
-			
 			while(fight.isVisible())
 			{
 				fight.doClick();
@@ -225,19 +195,12 @@ public class WarGameGUI extends JFrame
 				reset.doClick();
 			}
 		}
-		
-		
 	}
 	public static void main(String[] args)
 	{
 		new WarGameGUI();
-		
 	}
-	/*
-	imageCard1=new ImageIcon(RefStringToJPG+"5s.jpg");
-	imageCard2=new ImageIcon(RefStringToJPG+"5h.jpg");
-	public void buildPanel()
-	*/
+	
 	public void buildPanel()
 	{
 		//set .jpg file to imageicon
@@ -263,8 +226,6 @@ public class WarGameGUI extends JFrame
 		reset.setVisible(false);
 		warCard1.setVisible(false);
 		warCard2.setVisible(false);
-		
-		
 		labelPlayerOne=new JLabel("Player 1 has 26 cards");
 		labelPlayerTwo=new JLabel("Player 2 has 26 cards");
 		deck1Card=new JLabel(imageBack);
@@ -276,14 +237,9 @@ public class WarGameGUI extends JFrame
 		
 		//add picture label to the panel
 		panel.add(labelPlayerOne);
-		
-		
-		
 		panel.add(deck1Card);
 		panel.add(labelPlayerTwo);
 		panel.add(deck2Card);
-		
-		
 		panel.add(fight);
 		panel.add(start);
 		panel.add(reset);
